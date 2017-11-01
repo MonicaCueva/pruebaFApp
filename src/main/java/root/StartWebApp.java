@@ -11,7 +11,7 @@ public class StartWebApp {
         WebAppContext webapp = new WebAppContext();
         webapp.setContextPath("/");
         // change the name of the war as needed.
-        webapp.setWar("target/classes/sdi2-57.war");
+        webapp.setWar("target/classes/p1.war");
         server.setHandler(webapp);
 
         server.start();
