@@ -13,12 +13,16 @@ public class StartWebApp {
         // change the name of the war as needed.
         webapp.setWar("target/classes/p1.war");
 		
-		webapp.setAttribute("org.eclipse.jetty.server.webapp.ContainerIncludeJarPattern",".*/[^/]*jstl.*\\.jar$");
-		org.eclipse.jetty.webapp.Configuration.ClassList classlist = org.eclipse.jetty.webapp.Configuration.ClassList.setServerDefault(server);
-        classlist.addAfter("org.eclipse.jetty.webapp.FragmentConfiguration", "org.eclipse.jetty.plus.webapp.EnvConfiguration", "org.eclipse.jetty.plus.webapp.PlusConfiguration");
-        classlist.addBefore("org.eclipse.jetty.webapp.JettyWebXmlConfiguration", "org.eclipse.jetty.annotations.AnnotationConfiguration");
-		
-		
+		webapp.setAttribute("javax.servlet.context.tempdir",scratchDir);
+		ClassLoader jspClassLoader = new URLClassLoader(new URL[0], this.getClass().getClassLoader());
+		webapp.setClassLoader(jspClassLoader);
+		ServletHolder holderJsp = new ServletHolder("jsp",JspServlet.class);
+		holderJsp.setInitOrder(0);
+		ServletHolder holderDefault = new ServletHolder("default",DefaultServlet.class);
+		holderDefault.setInitParameter("resourceBase",baseUri.toASCIIString());
+		holderDefault.setInitParameter("dirAllowed","true");
+		webapp.addServlet(holderDefault,"/");
+
         server.setHandler(webapp);
 
         server.start();
