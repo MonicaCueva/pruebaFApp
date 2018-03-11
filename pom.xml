@@ -28,6 +28,22 @@
             <version>2.5</version>
         </dependency>
 		        
+				
+		<dependency>
+	        <groupId>org.eclipse.jetty</groupId>
+	        <artifactId>jetty-webapp</artifactId>
+	        <version>9.2.15.v20160210</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.eclipse.jetty</groupId>
+	        <artifactId>jetty-annotations</artifactId>
+	        <version>9.2.15.v20160210</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.eclipse.jetty</groupId>
+	        <artifactId>apache-jsp</artifactId>
+	        <version>9.2.15.v20160210</version>
+	    </dependency>	   	           				
 	    <dependency>
 	        <groupId>jstl</groupId>
 	        <artifactId>jstl</artifactId>
