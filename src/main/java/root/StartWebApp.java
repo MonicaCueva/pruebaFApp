@@ -12,17 +12,6 @@ public class StartWebApp {
         webapp.setContextPath("/");
         // change the name of the war as needed.
         webapp.setWar("target/classes/p1.war");
-		
-		webapp.setAttribute("javax.servlet.context.tempdir",scratchDir);
-		ClassLoader jspClassLoader = new URLClassLoader(new URL[0], this.getClass().getClassLoader());
-		webapp.setClassLoader(jspClassLoader);
-		ServletHolder holderJsp = new ServletHolder("jsp",JspServlet.class);
-		holderJsp.setInitOrder(0);
-		ServletHolder holderDefault = new ServletHolder("default",DefaultServlet.class);
-		holderDefault.setInitParameter("resourceBase",baseUri.toASCIIString());
-		holderDefault.setInitParameter("dirAllowed","true");
-		webapp.addServlet(holderDefault,"/");
-
         server.setHandler(webapp);
 
         server.start();
